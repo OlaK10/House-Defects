@@ -43,11 +43,17 @@ class DefectComponent extends Component {
     }
     
     this.generateDefects = this.generateDefects.bind(this)
+    this.cardClicked = this.cardClicked.bind(this)
     
   }
 
   componentDidMount() {
    
+  }
+
+  cardClicked(id) {
+    console.log("card name: " + id);
+    this.props.history.push(`/reports/${id}`)
   }
 
   generateDefects() {
@@ -56,7 +62,7 @@ class DefectComponent extends Component {
       this.state.defects.map(
         defect => 
     
-        <Card border="secondary" onClick={{}}key={defect.name} style={{margin: "5px"}}>
+        <Card border="secondary" onClick={() => this.cardClicked(defect.name)} key={defect.name} style={{margin: "5px"}}>
         <Card.Body>
           <Card.Title>{defect.name}</Card.Title>
           <Card.Text>{defect.description}</Card.Text>
@@ -70,7 +76,7 @@ class DefectComponent extends Component {
   
   }
 
-  
+
 
   /* showAlert() {
     <div className="container">
@@ -95,14 +101,12 @@ class DefectComponent extends Component {
   render() {
     return (
   
-      <div className="container" style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100%'}}>
+      <div className="container" style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: "100%"}}>
         <div className="row row-cols-4" style={{justifyContent: "center"}}>
           {this.generateDefects()}
         </div>
       </div>
 
-      
-     
     );
   }
 }
